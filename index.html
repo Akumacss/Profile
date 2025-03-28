@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #18191C;
+            color: white;
+            text-align: center;
+            padding: 50px;
+            overflow: hidden;
+        }
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .profile-card {
+            background: #202225;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+            z-index: 10;
+        }
+        .profile-card:hover {
+            transform: scale(1.05);
+        }
+        .profile-card img {
+            width: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #7289DA;
+        }
+        h2 {
+            color: #ffffff;
+            text-shadow: 0 0 10px #7289DA, 0 0 20px #7289DA; /* Glow effect */
+        }
+        p {
+            font-size: 14px;
+            color: #b9bbbe;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        p:hover {
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff; /* Glowing effect on hover */
+        }
+        .languages {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-top: 10px;
+            text-shadow: 0 0 10px #7289DA, 0 0 20px #7289DA; /* Glow effect */
+        }
+        .progress-bar {
+            background-color: #3a3a3a;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 5px 0;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 0 10px #7289DA; /* Glow effect */
+        }
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Glow effect */
+        }
+        .js {
+            background-color: #F7DF1E;
+            width: 78%;
+            box-shadow: 0 0 10px #F7DF1E; /* Glow effect */
+        }
+        .html {
+            background-color: #E34F26;
+            width: 94%;
+            box-shadow: 0 0 10px #E34F26; /* Glow effect */
+        }
+        .css {
+            background-color: #1572B6;
+            width: 100%;
+            box-shadow: 0 0 10px #1572B6; /* Glow effect */
+        }
+        .links a {
+            color: #7289DA;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            font-weight: bold;
+            transition: color 0.3s;
+            text-shadow: 0 0 10px #7289DA; /* Glow effect */
+        }
+        .links a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff; /* Glowing effect on hover */
+        }
+        /* Custom Cursor Styles */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: #7289DA;
+            border-radius: 50%;
+            pointer-events: none;
+            transition: all 0.1s ease;
+            z-index: 1000;
+        }
+
+        .custom-cursor:hover {
+            transform: scale(1.5);
+        }
+
+    </style>
+</head>
+<body>
+    <canvas class="rain"></canvas>
+    <div class="profile-card">
+        <img src="https://cdn.discordapp.com/avatars/1169111190824308768/9b228bfebae18302c598a42c09426ecf.png?size=1024" alt="Profile Picture">
+        <h2>Akuma Code</h2>
+        <p>🚀 Developer | 💻 Tech Enthusiast | 🎮 Gamer</p>
+        <p>🔹 Passionate about coding and automation</p>
+        <p>🔹 Always learning, always building</p>
+        <p>Status: 🔹 Always coding...</p>
+        
+        <div class="languages">Languages:</div>
+        <div class="progress-bar"><div class="progress js"></div></div>
+        <p>JavaScript (78%)</p>
+        <div class="progress-bar"><div class="progress html"></div></div>
+        <p>HTML (94%)</p>
+        <div class="progress-bar"><div class="progress css"></div></div>
+        <p>CSS (100%)</p>
+        
+        <div class="links">
+            <a href="#">🌐 GitHub</a>
+            <a href="#">🐦 Twitter</a>
+        </div>
+    </div>
+    <script>
+        const canvas = document.querySelector('.rain');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        let drops = [];
+        for (let i = 0; i < 100; i++) {
+            drops.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                speed: Math.random() * 5 + 2,
+                length: Math.random() * 20 + 10
+            });
+        }
+        
+        function drawRain() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            drops.forEach(drop => {
+                ctx.moveTo(drop.x, drop.y);
+                ctx.lineTo(drop.x, drop.y + drop.length);
+            });
+            ctx.stroke();
+            
+            drops.forEach(drop => {
+                drop.y += drop.speed;
+                if (drop.y > canvas.height) {
+                    drop.y = -drop.length;
+                    drop.x = Math.random() * canvas.width;
+                }
+            });
+            requestAnimationFrame(drawRain);
+        }
+        drawRain();
+      // Custom Cursor
+      const cursor = document.createElement('div');
+      cursor.classList.add('custom-cursor');
+              document.body.appendChild(cursor);
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = `${e.pageX - 10}px`;
+        cursor.style.top = `${e.pageY - 10}px`;
+      });
+
+    </script>
+</body>
+</html>
