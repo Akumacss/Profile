@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <style>
-        body {
+                body {
             font-family: Arial, sans-serif;
             background-color: #18191C;
             color: white;
@@ -190,21 +190,47 @@
         .left-box {
             left: 20px;
         }
-
+        .playing-card {
+            display: flex;
+            align-items: center;
+            background: #202225;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+            width: 320px;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+        .playing-card img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+        .playing-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .playing-text span {
+            font-size: 14px;
+            color: #b9bbbe;
+        }
+        .playing-text strong {
+            font-size: 16px;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
-  <div class="side-box left-box">
-        <img id="left-box-image" src="https://juice.irrvlo.xyz/juice_uncropped.png" alt="Juice" style="width: 80px; border-radius: 15%; margin-bottom: 10px;">
-        <h3 id="left-box-title">Playing Juice v1.1.13</h3>
-        <p id="left-box-content">An Electron client for Kirka.io</p>
-        <div class="links">
-            <a href="https://juice.irrvlo.xyz/">🍊 Juice Client</a> <a href="https://kirka.irrvlo.xyz/">🛠 Kirka Tools</a>
+    <div class="playing-card">
+        <img src="https://juice.irrvlo.xyz/juice_uncropped.png" alt="Game Icon">
+        <div class="playing-text">
+            <span>Playing a game</span>
+            <strong>Juice v1.1.13</strong>
+            <span>An Electron client for Kirka.io</span>
         </div>
     </div>
-    <canvas class="rain"></canvas>
-    <!-- Left Box -->
-    
     <div class="profile-card">
         <img src="https://cdn.discordapp.com/avatars/1169111190824308768/9b228bfebae18302c598a42c09426ecf.png?size=1024" alt="Profile Picture">
         <h2>JuicerAkuma</h2>
@@ -287,4 +313,3 @@
     </script>
 </body>
 </html>
-
